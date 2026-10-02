@@ -27,7 +27,7 @@ def xy_grid(W, H, device=None, origin=(0, 0), unsqueeze=None, cat_dim=-1, homoge
         ones = lambda *a: torch.ones(*a, device=device)
 
     tw, th = [arange(o, o + s, **arange_kw) for s, o in zip((W, H), origin)]
-    grid = meshgrid(tw, th, indexing='xy')
+    grid = tuple(meshgrid(tw, th, indexing='xy'))
     if homogeneous:
         grid = grid + (ones((H, W)),)
     if unsqueeze is not None:
